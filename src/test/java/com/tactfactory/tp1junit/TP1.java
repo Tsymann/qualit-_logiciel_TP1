@@ -89,20 +89,17 @@ public class TP1 {
 			IllegalArgumentException, InvocationTargetException {
 		List<Navire> map = new ArrayList<Navire>();
 		Navire navire1 = new PorteAvion();
-		Navire navire2 = new PorteAvion();
 		Joueur joueur1 = new Joueur();
 		map.add(navire1);
-		map.add(navire2);
 
 		Jeu jeu = new Jeu(4, 24, 18);
-		Method method = Jeu.class.getDeclaredMethod("placeBateau", Navire.class, int.class, int.class, int.class);
-		Method method2 = Jeu.class.getDeclaredMethod("bateauPlacable", Navire.class, int.class, int.class, int.class,
+		Method method = Jeu.class.getDeclaredMethod("bateauPlacable", Navire.class, int.class, int.class, int.class,
 				Joueur.class);
 
 		method.setAccessible(true);
 
 		method.invoke(jeu, map.get(0), 0, 0, 0);
-		boolean canPlace = (boolean) method.invoke(jeu, map.get(1), 0, 0, 0, joueur1);
+		boolean canPlace = (boolean) method.invoke(jeu, map.get(1), 0, 30, 0, joueur1);
 
 		StringBuilder errors = new StringBuilder();
 		if (!canPlace) {
